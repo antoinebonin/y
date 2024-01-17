@@ -29,7 +29,7 @@ async function recupererTweets() {
 
     // J'ajoute les commentaires a chaque post
     for (let index = 0; index < posts.length; index++) {
-        let post = posts[index];
+        const post = posts[index];
         posts[index].comments = await getCommentsFromPostId(post.id)
     }
     return posts
@@ -49,11 +49,22 @@ function remplirTemplate(element, post) {
 
     const commentsElement = element.querySelector('.comments')
     post.comments.forEach(function (comment) {
-        const paragraphe = document.createElement('p')
-        paragraphe.innerText = `${comment.email} : ${comment.body}`
-        commentsElement.appendChild(paragraphe)
+        const commentElement = remplirCommentaire(comment)
+        commentsElement.appendChild(commentElement)
     })
     return element
+}
+
+function remplirCommentaire(comment) {
+    const template = document.getElementById('comment-tpl')
+    const commentElement = template.content.cloneNode(true)
+    const pseudo = comment.email.split('@')[0]
+    commentElement.querySelector('.comment-avatar').src = `https://ui-avatars.com/api/?name=${pseudo}&background=random`
+    const usernameElement = commentElement.querySelector('.comment-username')
+    usernameElement.href = `mailto:${comment.email}`
+    usernameElement.innerText = `@${pseudo}`
+    commentElement.querySelector('.comment-content').textContent = comment.body
+    return commentElement
 }
 
 async function afficherTweets() {
