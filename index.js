@@ -1,4 +1,4 @@
-import { getAuthorsByIds } from "./auteurs.js";
+import { getAllAuthors, getAuthorsByIds } from "./auteurs.js";
 import { getAllComments, getCommentsFromPostId } from "./commentaires.js";
 import { getAllPosts } from "./posts.js";
 import { shuffle } from "./utils.js";
@@ -16,7 +16,7 @@ async function recupererTweets() {
     });
 
     // Je récupère tous les auteurs de mes posts
-    const authors = await getAuthorsByIds(authorsIds)
+    const authors = await getAllAuthors()
     const comments = await getAllComments()
 
     // J'ajoute l'auteur et les commentaires à son post
