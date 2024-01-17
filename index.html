@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Y</title>
+
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f8fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #2f2f2f;
+            color: #ffffff;
+            padding: 10px;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        #posts-container {
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        .post {
+            background-color: #ffffff;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .post:hover {
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            line-height: 1.5rem;
+        }
+
+        .post-header .post-username {
+            line-height: 0.5rem;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .post-content {
+            color: #14171a;
+            line-height: 1.5;
+        }
+
+        .post-comment-nb {
+            color: #616161;
+            line-height: 0.5;
+            font-size: smaller;
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid #e1e8ed;
+            margin: 10px 0;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <span>Y</span>
+    </header>
+
+    <div id="posts-container">
+        <!-- Ici on mettra nos posts -->
+    </div>
+
+    <template id="post-tpl">
+      <div class="post">
+          <div class="post-header">
+            <img class="avatar" src="https://ui-avatars.com/api/?name=Antoine+Bonin&background=random" alt="Avatar">
+            <div>
+                <h2 class="post-title">Je suis un titre de post</h2>
+                <p class="post-username">@AntoineBonin</p>
+            </div>
+          </div>
+          <div class="post-content">
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum ab incidunt aperiam blanditiis, odit voluptas porro numquam temporibus, rem saepe error doloribus accusantium quod voluptatibus ea explicabo maxime corporis in?</p>
+          </div>
+          <hr>
+          <p class="post-comment-nb">50 commentaire(s)</p>
+          <div class="comments hide">
+
+          </div>
+        </div>
+    </template>
+
+    <script type="module" src="index.js"></script>
+</body>
+</html>
