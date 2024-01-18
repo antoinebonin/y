@@ -1,5 +1,5 @@
-import { getAuthorsByIds } from "./auteurs.js";
-import { getCommentsFromPostId } from "./commentaires.js";
+import { getAllAuthors, getAuthorsByIds } from "./auteurs.js";
+import { getAllComments, getCommentsFromPostId } from "./commentaires.js";
 import { getAllPosts } from "./posts.js";
 import { shuffle } from "./utils.js";
 
@@ -16,22 +16,22 @@ async function recupererTweets() {
     });
 
     // Je récupère tous les auteurs de mes posts
-    const authors = await getAuthorsByIds(authorsIds)
+    const authors = await getAllAuthors()
+    const comments = await getAllComments()
 
-    // J'ajoute l'auteur à son post
+    // J'ajoute l'auteur et les commentaires à son post
     posts = posts.map(function (post) {
         const author = authors.find(function (auteur) {
             return auteur.id === post.userId
         })
         post.author = author
+        const comment = comments.filter(function (comment) {
+            return comment.postId === post.id
+        })
+        post.comments = comment
         return post
     })
-
-    // J'ajoute les commentaires a chaque post
-    for (let index = 0; index < posts.length; index++) {
-        const post = posts[index];
-        posts[index].comments = await getCommentsFromPostId(post.id)
-    }
+    console.log(posts);
     return posts
 }
 
